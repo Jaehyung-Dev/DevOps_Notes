@@ -1,0 +1,33 @@
+1.SwitchCase문 : 변수의 값을 조건으로 나눠서 처리하는 조건문이다.
+String grade = "B"; 
+
+switch(grade) {
+case "A":
+    System.out.println("90점 이상입니다.");
+    break; // 실행문이 실행되면 switch구문을 종료시킨다.
+case "B":
+		System.out.println("80점 이상입니다.");
+		break;
+case "C":
+		System.out.println("70점 이상입니다.");
+		break;
+case "D":
+	  System.out.println("60점 이상입니다.");
+		break;
+default:
+		System.out.println("60점 미만입니다.");
+}
+
+2.For문 : 초기화식, 조건식, 증감식 포함되어있는 반복문으로 모두 생략 가능하다.
+
+int i = 1;
+int sum = 0;	
+
+// break문을 이용해서 특정 조건이 됐을 때 for문을 종료시킨다.
+for( ; ; ) {
+		sum += i++; // 이런식으로 for문을 변형해서 사용가능
+		if(i > 100) {
+				break;
+		}
+}		
+System.out.println("1~1000까지의 합 : " + sum);
