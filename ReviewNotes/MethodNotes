@@ -1,0 +1,167 @@
+// * AccessModifierCalculator * 
+
+// 1. 접근제어자
+// public : 어디서나 사용을 가능하게하는 접근제어자
+public void add() {
+	ystem.out.println(10 + 20);
+}
+
+// protected : 현재 클래스, 같은 패키지내의 클래스, 자식 클래스에서만 사용이 가능
+protected void sub() {
+	ystem.out.println(20 - 10);
+}
+	
+// default : 현재 클래스, 같은 패키지내의 클래스에서 사용이 가능
+// default 접근제어자는 접근제어자를 명시하지 않으면 생성된다.
+void mul() {
+	System.out.println(10 * 20);
+}
+	
+// private : 현재 클래스에서만 사용이 가능
+private void div() {
+	System.out.println(20 / 10);
+}
+----------------------------------------------------------------------------------------------
+1. 클래스 구분
+// 메인메소드를 가지고 있는 클래스는 실행 클래스로 실제 자바 코드가 실행되는 클래스이고 메인메소드가 없는 클래스는 부품의 역할만 하는 클래스이다.
+// 메인메소드가 없는 클래스의 경우 변수로 선언해서 사용해야한다.
+AccessModifierCalculator ac = new AccessModifierCalculator(); // 객체(부품) 생성
+
+// 클래스에 정의해놓은 메소드나 변수를 사용할 때는 변수명.변수명, 변수명.메소드명으로 사용한다.
+ac.add(); 
+
+// 상속받은 자식 클래스에서 protected 메소드 사용하는 예제
+AccessModifierCalculatorChild acChild = new AccessModifierCalculatorChild(); // 객체 생성
+acChild.print(); // 변수명.메소드();로 메소드 호출
+-----------------------------------------------------------------------------------------------
+// AccessModifierCalculator 클래스를 상속받은 AccessModifierCalculatorChild 클래스
+
+public class AccessModifierCalculatorChild extends AccessModifierCalculator{
+	
+	public void print() {
+		// 상속받은 클래스에서 상속해준 클래스를 호출할 때는 super라는 키워드를 이용한다.
+		// 상속받은 자식 클래스에서는 public, protected 메소드 사용가능
+		super.add();
+		super.sub();
+	}
+	
+}
+-----------------------------------------------------------------------------------------------
+// * ReturnCalculator *
+
+// 2. 리턴타입 : 메소드가 종료되고 반환되는 결과 값의 자료형을 지정
+// 2-1. 결과값이 없는 메소드는 리턴타입을 void로 지정한다.
+public void add() {
+	System.out.println(10 + 20);
+	// 리턴타입이 void인 메소드에서 return 구문을 사용하면 에러 발생
+//	return 20;
+}
+	
+// 2-2. 결과값이 있는 메소드는 결과값의 자료형을 리턴타입으로 지정한다.
+// 결과 값이 int인 메소드
+public int sub() {
+	return 20 - 10;
+}
+// 지정한 리턴타입과 다른 자료형의 값을 리턴해도 에러가 발생한다.
+// public int div() {
+//	return (double)20 / 10;
+// }
+	
+public double div() {
+	return (double)20 / 10;
+}
+	
+// 참조 타입의 값도 리턴타입으로 지정할 수 있다.
+public String createString() {
+	return "hello java";
+}
+	
+public int[] createArray() {
+	return new int[5];
+}
+	
+// 우리가 만드는 클래스도 참조타입이기 때문에 리턴타입으로 지정가능하다.
+public AccessModifierCalculator createAnObject() {
+	return new AccessModifierCalculator();
+}
+-----------------------------------------------------------------------------------------------
+ReturnCalculator rCalc = new ReturnCalculator();
+		
+// 1. 결과 값이 없는 메소드 호출(사용)
+rCalc.add();
+		
+// 2. 결과 값이 있는 메소드 호출(사용)
+// 결과 값이 있는 메소드를 이런식으로 호출해서 사용하면 결과 값을 의미없게 사용하게 된다.
+rCalc.div(); // 아무 값도 출력되지 않음
+		
+// 메소드의 결과 값을 의미 있게 사용하려면 메소드의 결과 값과 같은 자료형의 변수로 저장해서 사용하거나 다른 메소드의 매개변수로 전달해서 사용한다.
+double dNum = rCalc.div();
+System.out.println(dNum);
+		
+System.out.println(rCalc.div());
+		
+String str = rCalc.createString();
+System.out.println(str);
+		
+int[] intArr = rCalc.createArray();
+System.out.println(intArr);
+		
+AccessModifierCalculator ac = rCalc.createAnObject();
+System.out.println(ac);
+-----------------------------------------------------------------------------------------------
+// * ParameterCalculator *
+
+// 3. 매개변수 : 메소드가 받아서 처리할 대상이 되는 값을 의미한다.
+// 매개변수의 지정 위치는 메소드 명 뒤 () 소괄호 안에 선언할 수 있다.
+// 매개변수에 사용할 수 있는 타입은 기본자료형과 모든 참조타입
+// 매개변수의 개수에는 제한이 없어서 개발자가 원하는 대로 지정할 수 있다.
+// 매개변수가 있는 메소드를 사용할 때는 항상 매개변수의 타입, 순서, 갯수를 맞춰야 한다.
+	
+// 메소드의 정의부(선언부) : 메소드의 접근제어자, 리턴타입, 메소드명, 매개변수, 어떤 동작을 하는지를 지정한다.
+// 메소드의 사용부에서는 항상 정의부에서 정의한 형태로 호출해서 사용한다.
+public void add(int a, long b) {
+	System.out.println(a + b);
+}
+	
+public double div(double a, int b) {
+	return a / b;
+}
+	
+public String concat(String a, String b) {
+	return a + " " + b;
+}
+	
+private int num;
+
+public int getNum() {
+	return num;
+}
+
+public void setNum(int num) {
+	this.num = num;
+}
+------------------------------------------------------------------------------------------------------
+ParameterCalculator pc = new ParameterCalculator();
+		
+// 메소드의 사용은 항상 선언된 형태와 동일하게 호출해서 사용한다.
+pc.add(10, 20L);
+		
+		
+// 다른 형태로 호출하면 에러가 발생하게 된다.
+pc.add(10, 20.0); // 매개변수 형식이 맞지 않아서 에러 발생
+
+// 매개변수 값 전달은 변수로도 가능한데, 이 경우에는 변수에 저장된 값이 메소드로 전달된다.
+int num1 = 100;
+long num2 = 200L;
+		
+pc.add(num1, num2);
+// 호출할 때 매개변수의 타입, 개수, 순서를 동일하게 호출한다.
+double result = pc.div(20.0, 10);
+double result2 = pc.div(10, 20.0) // 매개변수의 순서가 달라서 에러 발생 
+		
+System.out.println(result);
+		
+System.out.println(pc.concat("bit", "camp"));
+		
+CompleteCalculator cc = new CompleteCalculator();
+		
