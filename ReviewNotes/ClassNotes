@@ -1,0 +1,152 @@
+ * Car 클래스 *
+// 1. 자동차에 속성들(인스턴스 변수, 필드, 어트리뷰트...)
+	// 색상
+	public String color;
+	// 가격
+	public int price;
+	
+	// 생성자 메소드: 리턴타입이 없고 클래스 이름과 동일한 명칭의 메소드.
+	// 생성자 메소드의 역할은 객체를 생성하고 객체에 있는 변수와 메소드를 메모리에 올리면서 변수들을 초기화 하는 역할
+  
+  // 기본생성자
+	public Car() {
+		
+	}
+	// 매개변수가 있는 생성자 (매개변수가 있는 생성자를 선언시 기본 생성자가 제공되지 않기 때문에 기본 생성자도 함께 정의)
+	public Car(int price) {
+		this.price= price; 
+	}
+	
+	// 2. 자동차의 기능들(메소드, 펑션, 함수....)
+	// 시동을 켠다
+	public void turnOn() {
+		System.out.println("시동을 켠다.");
+	}
+	// 시동을 끈다
+	public void turnOff() {
+		System.out.println("시동을 끈다.");
+	}
+
+	// 자동차의 정보를 표시한다.
+	public void printCarInfo() {
+		System.out.println("색상 : " + color);
+		System.out.println("가격 : " + price);
+	}
+---------------------------------------------------------------------------------------------------------------------------
+    // 1. 정의한 클래스는항상 변수로 선언해서 사용한다(static 클래스 제외)
+		int a = 10; // 정수형의 초기화 방식, 그렇다면 class는 어떻게 초기화 해야할까?
+					
+		// 2. 정의한 클래스 타입의 값을 만들어주는 작업을 인스턴스화라고 한다.
+		// 인스턴스화를 진행하게 되면 클래스내의 선언된 변수들과 메소드들이 메모리에 올라가고 그 변수들과 메소드들 사용할 수 있는 클래스타입의 값이 객체로 하나 만들어지게 된다.
+		// 인스턴스화 방식 : new 생성자();
+    Car car = new Car(); // class Car를 car라는 변수에 담고 new Car라는 인스턴스(값)를 생성해서 그것도 car 변수에 담아준다.(Car()는 생성자 메소드)
+		
+		// 3. 생성된 객체의 변수에 값 저장
+		car.color = "검정";
+		car.price = 5000;
+		
+		System.out.println(car.color); // 검정
+		System.out.println(car.price); // 5000
+		
+		// 4. 생성된 객체의 메소드 사용
+		car.turnOn(); // 시동을 켠다.
+		car.turnOff(); // 시동을 끈다.
+		car.printCarInfo(); // 색상 : 검정, 가격 : 5000
+		
+		// 인스턴스(객체)를 생성해서 새로운 메모리 공간에 할당받기 때문에 
+		// car와 car2는 서로 영향을 주지 않는다.(각자 다른 메모리에 저장된다.)
+		Car car2 = new Car();
+		
+		System.out.println(car == car2); // false
+		System.out.println(car2.color); // null
+
+		Car car3 = generateCar(car);
+		
+		car3.printCarInfo();
+	}
+	
+	// 클래스는 타입의 역할도 하기때문에 메소드의 리턴타입이나 매개변수로도 사용할 수 있다.
+	public static Car generateCar(Car car) {
+		Car returnCar = new Car();
+		returnCar.color = car.color;
+		returnCar.price = car.price;
+		
+		return returnCar;
+	}
+---------------------------------------------------------------------------------------------------------------------------
+	* Circle 클래스 * # 생성자에서 this
+  public final double PI = 3.14;
+	public int radius;
+	
+	public Circle() {
+		
+	}
+	public Circle(int radius) {
+		// 생성자를 호출하면 객체가 생성되는데
+		// this는 생성된 객체를 받아온다.
+		this.radius = radius;
+	}
+	
+	public double round() {
+		double result = 2 * PI * radius;
+		return result;
+		// return PI * radius * 2
+	}
+	
+	public double area() {
+		double result = PI * radius * radius;
+		return result;
+	}
+---------------------------------------------------------------------------------------------------------------------------
+            * Circle 사용 *
+    public static void main(String[] args) {
+		Circle circle = new Circle(10);
+		
+		System.out.println(circle.radius);
+		System.out.println(circle.round());
+		System.out.println(circle.area());
+		
+	}
+---------------------------------------------------------------------------------------------------------------------------
+* Student 클래스 * # 메소드에서 this
+  public String name;
+	public int age;
+	
+	public Student() {
+		
+	}
+	public Student(String name) {
+		this.name = name;
+	}
+	public Student(String name, int age) {
+		this.name = name;
+		this.age = age;
+	}
+	
+	public void studentInfo() {
+		// 생성자에서 this 객체가 생성된 객체를 의미한다면
+		// 인스턴스 메소드에서 this 객체는 해당 메소드를 소유하고 있는 객체를 의미한다.
+		System.out.println("이름 : " + this.name);
+		System.out.println("나이 : " + this.age);
+		
+//		System.out.println("이름은 " + name);
+//		System.out.println("나이는 " + age);
+	} 
+---------------------------------------------------------------------------------------------------------------------------
+            * Student 사용 *
+    public static void main(String[] args) {
+		Student student = new Student("홍길동", 20);
+		
+		String[] strArr = new String[5];
+		Student[] stuArr = new Student[5];
+		
+		stuArr[0] = new Student("홍길동", 20);
+		stuArr[1] = new Student("임꺽정", 19);
+		stuArr[2] = new Student("장길산", 30);
+		
+		for(Student st : stuArr) {
+			st.studentInfo();
+		}
+		
+		student.studentInfo();
+	  }
