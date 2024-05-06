@@ -1,0 +1,63 @@
+// 1.Academy 추상화 클래스를 생성 및 추상메소드 선언
+  // abstract 키워드를 통해 추상화 클래스 생성 가능
+  public abstract class Academy {
+	public int classCnt;
+	public int studentCnt;
+	public int teacherCnt;
+	public int subjectCnt;
+	
+	public void academyInfo() {
+		System.out.println("강의수 : " + this.classCnt);
+		System.out.println("학생수 : " + this.studentCnt);
+		System.out.println("강사수 : " + this.teacherCnt);
+		System.out.println("과목수 : " + this.subjectCnt);
+	}
+	
+	// 추상메소드 선언
+	// 추상메소드는 선언만 해놓은 메소드(껍데기(형태)만 존재한다.)
+	// abstract 키워드를 이용해서 추상메소드를 선언한다.
+	public abstract void teach();
+	public abstract void solveHomework();
+	public abstract void rest();
+	public abstract void attend();
+}
+--------------------------------------------------------------------
+// 2. 추상클래스 Academy를 상속 받은 ComAcademy 클래스 만들기
+  // 추상클래스를 상속받은 자식클래스에서는 항상 추상 메소드를 상속받아 선언해야함(오버라이드)
+  public class ComAcademy extends Academy {
+
+	@Override
+	public void teach() {
+		System.out.println("프로그래밍을 가르친다.");
+	}
+
+	@Override
+	public void solveHomework() {
+		System.out.println("프로그래밍 숙제를 풀어준다.");
+	}
+
+	@Override
+	public void rest() {
+		System.out.println("프로그래밍 수업이 끝나고 쉰다.");
+	}
+
+	@Override
+	public void attend() {
+		System.out.println("프로그래밍 수업에 참여한다.");
+	}
+}
+--------------------------------------------------------------------
+// 3.추상클래스와 추상메소드 사용
+	  public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		// 추상클래스의 추상메소드는 완전한 형태의 메소드가 아니기 때문에
+		// 추상클래스는 인스턴스화가 불가능하다.
+//		Academy academy = new Academy();
+		
+		// 추상클래스는 자식 클래스의 객체로 사용해야 한다.
+		Academy academy = new ComAcademy();
+		academy.teach();
+		academy.solveHomework();
+		academy.rest();
+		academy.attend();
+	}
