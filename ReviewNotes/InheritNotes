@@ -1,0 +1,146 @@
+---------------------------------------------------------------------------------------- 상속 사용법 예제 ----------------------------------------------------------------------------------------
+// 1. 4가지 인스턴스 변수(속성)를 가진 부모클래스 Car 만들기 
+
+public class Car {
+	public String company;
+	public String model;
+	public String color;
+	public int price;
+	
+	public void carInfo() {
+		System.out.println("제조사 : " + this.company);
+		System.out.println("모델 : " + this.model);
+		System.out.println("색상 : " + this.color);
+		System.out.println("가격 : " + this.price);
+	}
+}
+----------------------------------------------------------------------------------------
+// 2. Car를 상속받는 자식클래스(기아Car) 만들기
+
+// extends를 통해 상속
+public class KiaCarInherit extends Car { 
+	public void cruiseMode() {
+		System.out.println("속도를 유지한다.");
+	}
+}
+----------------------------------------------------------------------------------------
+// 3. 메인메소드에서 기아 Car 사용하기
+
+public static void main(String[] args) {
+		// 1. 상속받은 자식 클래스 객체 생성
+		KiaCarInherit kCar = new KiaCarInherit();
+		
+		// 2. 부모클래스인 Car의 속성과 기능 사용
+		kCar.company = "기아";
+		kCar.model = "k9";
+		kCar.color = "초록";
+		kCar.price = 6000;
+		
+		kCar.carInfo(); // 현대, 제네시스, 검정, 5000
+		
+		// 3. 자식클래스인 KiaCarInherit 고유한 속성이나 기능 사용
+		kCar.cruiseMode(); // 속도를 유지한다.
+		
+		// 4. 상속은 다형성의 기초
+		// 다형성은 다양한 형태를 띄는 성질
+		// 부모클래스 타입 변수에 여러 형태의 자식 객체를 담아서 사용할 수 있게 된다.
+		// 원래는 Car car = new Car(); 형태로밖에 사용할 수 없었는데
+		// HyundaiCarinherit가 Car클래스를 상속받았기 때문에 
+		// Car car = new KiaCarInherit(); 형태로도 사용이 가능하다.
+		Car	car = new KiaCarInherit();
+		
+		// 부모클래스 타입의 변수에서는 자식클래스의 고유한 속성이나 기능은 사용하지 못한다.
+//		car.cruiseMod();
+	}
+---------------------------------------------------------------------------------------- 메소드 오버라이드 예제 ----------------------------------------------------------------------------------------
+// 1. 속성 3개와 기능 2개 생성자를 가진 Animal 부모클래스를 만든다
+  public class Animal {
+	int age;
+	String size;
+	boolean hasWing;
+	
+	public Animal() {
+		
+	}
+	
+	public Animal(int age, String size, boolean hasWing) {
+		this.age = age;
+		this.size = size;
+		this.hasWing = hasWing;
+	}
+	
+	public void eat() {
+		System.out.println("먹이를 먹는다.");
+	}
+	
+	public void sleep() {
+		System.out.println("잠을 잔다.");
+	}
+}
+----------------------------------------------------------------------------------------
+// 2.Animal 클래스를 상속받은 Bird 클래스 생성 
+// 메소드 오버라이드를 통해 eat 과 sleep 메소드 재정의
+  public class Bird extends Animal {
+	// 1. 메소드 오버라이드
+	// 부모클래스에 정의되어 있는 메소드를 재정의
+	// 항상 부모클래스에 정의되어 있는 메소드의 형태(리턴타입, 메소드명, 매개변수의 타입, 개수, 순서)와 동일한 형태로 정의한다.
+	
+	public void eat() {
+		System.out.println("모이를 쪼아 먹는다.");
+	}
+	
+	public void sleep() {
+		System.out.println("나뭇가지에 앉아서 잔다.");
+	}
+}
+----------------------------------------------------------------------------------------
+// 3.Animal 클래스를 상속받은 Tiger 클래스 생성 
+// super 키워드를 통해 부모클래스 호출, @Override 사용 
+  public class Tiger extends Animal{
+	String skin;
+	
+	public Tiger() {
+		
+	}
+	
+	public Tiger(int age, String size, boolean hasWing) {
+		// 자식클래스에서 부모클래스를 호출할 수 있는 super 키워드
+		super (age, size, hasWing);
+		// 결과는 
+		//		this.age = age;
+		//		this.size = size;
+		//		this.hasWing = hasWing;
+		// 와 같음
+	}
+	
+	// @Override : 컴파일러가 자식클래스와 부모클래스를 비교하면서 해당메소드가 오버라이드 됐는지를 비교한다. 
+  // @Override를 사용하면 컴파일러에게 미리 이 메소드가 오버라이드된 메소드라는 것을 알린다.
+	// @Override는 각 메소드 마다 따로 적용되어 필요한 메소드 마다 달아줘야 해당 메소드가 적용됨
+	@Override
+	public void eat() {
+		// 인스턴스 메소드에서도 super 키워드를 사용할 수 있다.
+		// 부모클래스에 정의되어 있는 eat() 메소드 실행
+		super.eat();
+		System.out.println("육식을 한다.");
+	}
+	@Override
+	public void sleep() {
+		super.sleep();
+		System.out.println("누워서 잔다.");
+	}
+}
+----------------------------------------------------------------------------------------
+// 4. main 메소드에서 사용
+    public static void main(String[] args) {
+		Animal animal = new Bird(); // animal Bird 객체 생성
+		
+		// Bird 클래스의 eat, sleep이 실행
+		animal.eat();
+		animal.sleep();
+		
+		animal = new Tiger(); // animal 객체 Tiger로 변경
+		
+		// Tiger 클래스의 eat, sleep이 실행
+		animal.eat();
+		animal.sleep();
+	}
