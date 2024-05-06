@@ -1,0 +1,141 @@
+// 1.부모클래스인 Tv 생성 
+public class Tv {
+	public int lastChannel; // 정수타입 lastChannel 인스턴스 변수 생성
+	
+	public Tv() {
+		lastChannel = 1; // 1을 반환하는 기본생성자 생성
+	}
+	
+	public void powerIn() {
+		System.out.println("TV의 전원을 켭니다.");
+	}
+	
+	protected void powerOff() {
+		System.out.println("TV의 전원을 끕니다.");
+	}
+	
+	void operate(int channel) {
+		lastChannel = channel;
+		moveTo(channel);
+	}
+	
+	public void moveTo(int channel) {
+		System.out.println(channel + "로 이동합니다.");
+	}
+	
+	private void channelUp() {
+		lastChannel++;
+	}
+	
+	public void channelDown() {
+		lastChannel--;
+	}
+}
+----------------------------------------------------------------------------------------------
+// 1-1 다른 패키지에 Tv 클래스 상속받은 AppleTv 클래스 만들기
+  public class AppleTv extends Tv {
+	@Override
+	public void powerIn() {
+		System.out.println("AppleTv");
+		super.powerIn();
+	}
+	@Override
+	public void powerOff() {
+		System.out.println("AppleTv");
+		super.powerOff();
+	}
+	
+// Tv와 AppleTv가 다른 패키지에 속해있기 때문에 default 접근제어자로 선언된 operate메소드는 오버라이드를 할 수 없다
+//	@Override
+//	public void operate(int channel) {
+//		
+//	}
+	
+	public void testTv() {
+		super.powerIn();
+		
+		super.powerOff();
+		
+		super.operate(11); // default 접근제어자로 접근 오류 발생
+		super.channelUp(); // private 접근제어자로 접근 오류 발생
+	}
+}
+----------------------------------------------------------------------------------------------
+// 2. Tv 클래스 상속받은 LgTv 클래스 만들기
+public class LgTv extends Tv {
+	@Override
+	public void powerIn() {
+		System.out.println("QLED");
+		// super 키워드로 생성자를 호출할 때는 항상 최상단에서 사용해야하지만
+		// 인스턴스 메소드를 사용할 때 위치는 중요하지 않다.
+		super.powerIn();
+	}
+	
+	@Override
+	public void powerOff() {
+		System.out.println("QLED");
+		super.powerOff();
+	}
+	
+	@Override
+	public void operate(int channel) {
+		System.out.println("QLED");
+		super.operate(channel);
+	}
+	
+	public void testTv() {
+		// 부모클래스에 public으로 선언된 메소드
+		super.powerIn();
+		
+		// 부모클래스에 protected로 선언된 메소드
+		super.powerOff();
+		
+		// 부모클래스에 default로 선언된 메소드
+		super.operate(11);
+		
+		// 부모클래스에 private으로 선언된 메소드
+		super.channelUp(); // 접근 오류 발생
+	}
+}
+----------------------------------------------------------------------------------------------
+3. Tv 클래스 상속받은 SamsungTv 클래스 만들기
+public class SamsungTv extends Tv {
+	@Override
+	public void powerIn() {
+		System.out.println("OLED");
+		super.powerIn();
+	}
+	
+	@Override
+	public void powerOff() {
+		System.out.println("OLED");
+		super.powerOff();
+	}
+	
+	@Override
+	public void operate(int channel) {
+		System.out.println("OLED");
+		super.operate(channel);
+	}
+}
+----------------------------------------------------------------------------------------------
+4. LgTv와 SamsungTv 클래스로 다형성 구현
+public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		// 1. 다형성을 이용하여 Tv 객체 바꾸며 사용하기
+		Tv tv = new LgTv(); // LgTv 객체 생성
+		
+		tv.powerIn();
+		
+		tv = new SamsungTv(); // SamsymgTv 객체로 변경
+		
+		tv.powerIn();
+		
+		tv = new LgTv(); // 다시 LgTv 객체로 선언
+		
+		tv.channelDown();
+		
+		tv = new SamsungTv(); // 다시 SamsymgTv 객체로 선언
+		
+		tv.channelDown(); 
+	}
