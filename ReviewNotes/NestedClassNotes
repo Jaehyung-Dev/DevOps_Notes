@@ -1,0 +1,207 @@
+// 1. 먼저 NestedClass라는 이름의 외부클래스(본클래스)를 만든다.
+public class NestedClass {
+	// 외부클래스의 멤버변수(인스턴스 변수, 어트리뷰트, 속성 등)
+	private int num1;
+	public int num2;
+	
+	// 외부클래스의 클래스 변수(정적 변수, 스태틱 변수)
+	public static int num3;
+	
+	// 외부클래스의 인스턴스 메소드
+	private int add(int a, int b) {
+		return a + b;
+	}
+	
+	// 외부클래스의 클래스 메소드(스태틱 메소드, 정적 메소드)
+	private static int sub(int a, int b) {
+		return a - b;
+	}
+	
+	// 2. 정적 중첩(내부)클래스(스태틱 중첩 클래스) 선언
+	// 외부클래스의 static 키워드로 생성된 변수와 메소드에만 접근할 수 있다.
+	// 중첩클래스 자체가 static으로 컴파일러가 메모리에 바로 올라가고 외부클래스의 멤버변수나 인스턴스 메소드는 객체가 생성된 후에 사용할 수 있기 때문이다.
+	// 외부클래스의 객체 생성없이도 객체를 만들 수 있다.
+	public static class Mul {
+		// 정적 중첩클래스의 멤버변수
+		public int num4
+		
+		// 정적 중첩클래스의 클래스변수;
+		public static int num5;
+		
+		// 정적 중첩클래스의 인스턴스 메소드;
+		public int mul(int a, int b) {
+			// 외부클래스의 클래스 변수 및 클래스 메소드에 접근
+			num3 = 10;
+			a = sub(num3, 5);
+			return a * b;
+		}
+		
+		// 정적 중첩클래스의 클래스 메소드
+		public static int staticMul(int a, int b) {
+			return a * b;
+		}
+	}
+	
+	// 3. 인스턴스 중첩 클래스 선언
+	// 외부클래스의 객체가 생성된 후에 객체를 만들 수 있다.
+	// 외부클래스의 모든 인스턴스 변수나 메소드에 접근이 가능하다.
+	public class Div {
+		// 인스턴스 중첩클래스의 멤버변수
+		public int num6;
+		
+		// 인스턴스 중첩클래스의 클래스변수
+		public static int num7;
+		
+		// 인스턴스 중첩클래스의 인스턴스 메소드
+		public double div(int a, int b) {
+			// 외부클래스의 인스턴스 변수와 메소드에 접근
+			num1 = 20;
+			a = add(num1, 10);
+			// 외부클래스의 클래스 변수와 메소드에 접근
+			num3 = 30;
+			b = sub(num3, 10);
+			return (double)a / b;
+		}
+		
+		// 인스턴스 중첩클래스의 클래스 메소드
+		public static double staticDiv(int a, int b) {
+			return (double)a / b;
+		}
+	}
+}
+---------------------------------------
+4. 다른 클래스에서 정적, 인스턴스 중첩클래스의 사용
+public static void main(String[] args) {
+		// 1. 정적 중첩 클래스의 객체 생성
+		// 외부클래스의 객체 생성 없이도 객체 생성 가능
+		NestedClass.Mul mul = new NestedClass.Mul();
+		
+		// 1-1. 정적 중첩클래스의 인스턴스 변수와 메소드
+		mul.num4 = 10;
+		
+		int result = mul.mul(mul.num4, 20);
+		
+		System.out.println(result);
+		
+		// 1-2. 정적 중첩클래스의 클래스 변수와 메소드
+		// static 변수와 메소드의 경우 다음과 같이 원형명.으로 접근가능
+		NestedClass.Mul.num5 = 10;
+		
+		NestedClass.Mul.staticMul(NestedClass.Mul.num6, 20);
+		System.out.println(result);
+		
+		// 2. 인스턴스 중첩클래스의 객체 생성
+		// 항상 외부 클래스의 객체를 먼저 생성해야 한다.
+		NestedClass nestedClass = new NestedClass();
+		
+		// 그 다음 내부 클래스 객체 생성
+		// 위에서 만들어준 외부클래스 객체변수명에 .찍고 객체 생성
+		NestedClass.Div div = nestedClass.new Div();
+		
+		// 2-1. 인스턴스 중첩 클래스의 인스턴스 변수와 메소드
+		// 생성된 객체의변수. 으로 접근 및 사용 가능
+		div.num6 = 100;
+
+		
+		double dResult = div.div(div.num7, 17);
+		System.out.println(dResult);
+		
+		// 2-2. 인스턴스 중첩 클래스의 클래스 변수와 메소드
+		// static 변수와 메소드의 경우 바로 접근 가능하므로 바로 접근
+		NestedClass.Div.num7 = 100;
+		dResult = NestedClass.Div.staticDiv(NestedClass.Div.num7, 17);
+		System.out.println(dResult);
+	}
+----------------------------------------------------------------------------------
+// 지역 중첩 클래스 선언
+		// 지역 중첩 클래스는 메소드 안에 선언되는 클래스 -> 해당되는 메소드가 호출됐을 때 메모리에 올라
+		// 메소드안에서 선언되었기 때문에 메소드의 호출이 끝나면 사용이 불가능하다 -> 선언된 메소드 안에서만 사용 가능한 클래스
+		// 따라서 중첩 클래스가 선언된 메소드 안에서만 사용가능한 중첩 클래스이다.
+		// 중첩 클래스가 선언된 메소드에서 객체를 만들어서 사용한다.
+public class LocalNestedClass {
+	public void speedUp() {
+		class Engine {
+			int fuelAmount;
+			
+			public Engine(int fuelAmount) {
+				this.fuelAmount = fuelAmount;
+			}
+			
+			public void useFeul() {
+				this.fuelAmount -= 10;
+			}
+		}
+		
+		// 2. 지역 중첩 클래스의 객체 생성
+		// speedUp 메소드 안에서 객체로 만들고 사용한다.
+		Engine engine = new Engine(100);
+		engine.useFeul();
+		
+		System.out.println("연료가 " + engine.fuelAmount + "% 남았습니다.");
+	}
+}
+--------------------------------------
+// 지역 중첩클래스 사용 
+public static void main(String[] args) {
+		// 지역 중첩 클래스는 객체 생성이 불가능하다
+		LocalNestedClass localNestedClass = new LocalNestedClass();
+		
+		localNestedClass.speedUp();
+		
+		// 에러 발생
+//		LocalNestedClass.Engine engine = localNestedClass.new Engine();
+	}
+-------------------------------------------------------------------------------
+// 익명 중첩클래스 선언
+public interface AnonymousNestedClass {
+	int add(int a, int b);
+	int sub(int a, int b);
+	int mul(int a, int b);
+	double div(int a, int b);
+	int mod(int a, int b);
+}
+----------------------------------------
+// 익명 중첩클래스 사용
+public static void main(String[] args) {
+		// 1. 익명 중첩 클래스
+		// 익명 중첩 클래슨는 인터페이스나 추상클래스를 상속받은 자식 클래스를 만들지 않고 객체를 생성할 때 사용한다.
+		// 별도로 클래스를 생성하지 않기 때문에 클래스의 이름이 없고 따라서 익명 중첩 클래스라고 한다.
+		// 다음과 같이 구현부를 추가하면 상속 받은 것 처럼 사용이 가능
+		// 인터페이스나 추상클래스는 객체를 생성할 수가 없지만 인터페이스나 추상클래스의 생성자를 호출하면서 추상메소드들을 모두 구현해주면
+		// 인터페이스나 추상클래스가 구현된 객체를 생성할 수 있게 된다.
+		AnonymousNestedClass anonymousNestedClass = new AnonymousNestedClass() {
+			@Override
+			public int add(int a, int b) {
+				return a + b;
+			}
+			
+			@Override
+			public int sub(int a, int b) {
+				return a - b;
+			}
+			
+			@Override
+			public int mul(int a, int b) {
+				return a * b;
+			}
+			@Override
+			public double div(int a, int b) {
+				return a / b;
+			}
+			@Override
+			public int mod(int a, int b) {
+				return a % b;
+			}
+		}; // 세미콜론을 찍어줘야함
+		
+		int result = anonymousNestedClass.add(10, 20);
+		System.out.println(result);
+		result = anonymousNestedClass.sub(20, 10);
+		System.out.println(result);
+		result = anonymousNestedClass.mul(20, 10);
+		System.out.println(result);
+		double dResult = anonymousNestedClass.div(100, 13);
+		System.out.println(dResult);
+		result = anonymousNestedClass.mod(33, 10);
+		System.out.println(result);
+	}
