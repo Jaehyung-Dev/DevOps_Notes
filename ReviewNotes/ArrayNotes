@@ -3,7 +3,6 @@
 // 기본 자료형 또는 참조타입의 자료형으로도 배열을 생성할 수 있다.
 int[] numArr = new numArr[5]; // 길이가 5인 정수형 배열 numArr
 
-
 2. 배열의 초기화
 // 2-1. 인덱스(순번)로 접근해서 초기화
 // 인덱스 0부터 시작한다 -> 마지막 인덱스는 배열의 길이 -1
@@ -12,7 +11,6 @@ numArr[0] = 1;
 numArr[1] = 2;
 ...
 numArr[4] = 5;
-
 
 3.배열 값의 사용
 // 각각의 인덱스로 접근해서 사용한다.
@@ -23,19 +21,17 @@ System.out.println(numArr[4]); // 5 출력
 
 int[] bigArr = new int[1000];
 
-
 4.반복문을 이용한 배열의 초기화
 for(int i = 0; i < 1000; i++) {
     bigArr[i] = i + 1;
 }
 System.out.println("bigArr의 길이 : " + bigArr.length);
 
-
 5.반복문을 통한 배열값의 사용
 for(int i = 0; i < bigArr.length; i++) {
+    bigArr[i] = i;
     System.out.println(bigArr[i]);
 }
-
 
 6.배열의 선언과 동시에 초기화
 // 길이가 4인 배열 생성, 인덱스는 0~3
@@ -44,7 +40,6 @@ int[] intArr = {10, 20, 30, 40};
 System.out.println(intArr[0]);
 System.out.println(intArr[4]); // 존재하지 않는 인덱스에 접근하면 out of bound 에러가 발생한다.
 
-
 7.참조타입의 배열 선언
 String[] strArr = new String[5];
 strArr[0] = "a";
@@ -52,7 +47,6 @@ strArr[1] = "b";
 
 System.out.println(strArr[0]); // a 출력
 System.out.println(strArr[1]); // b 출력
-
 
 8.향상된 for문 : 기존 for문은 배열의 인덱스를 이용해서 배열 요소에 접근하는 방식이였으나 향상된 for문은 배열의 요소(값)에 직접 접근하는 방식
 int[] scores = {100, 84, 56, 78, 67};
@@ -69,14 +63,12 @@ double avg = (double)sum / scores.length;
 		
 System.out.println("점수의 평균 : " + avg);
 
-
 9.얕은 복사 : 같은 메모리 주소를 가지기 때문에 복사된 배열에서 값을 변경하면 원본 배열의 값이 변경된다.
 int[] intArr = {1, 2, 3, 4, 5};
 int[] copyArr = intArr; // intArr을 복사하여 copyArr 배열 생성
 
 copyArr[0] = 1000; // copyArr[0]을 1000으로 변경
 System.out.println(intArr[0]); // 원본 배열인 intArr의 [0]값이 1000으로 변경됨
-
 
 10.깊은 복사 : clone 메소드나 System.arraycopy()를 사용하여 heap 메모리 영역에 clone한 배열과 같은 새로운 배열을 생성하는것
 int[] intArr = {1, 2, 3, 4, 5};
