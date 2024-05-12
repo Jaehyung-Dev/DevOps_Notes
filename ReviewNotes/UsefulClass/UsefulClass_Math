@@ -1,0 +1,37 @@
+    double num = 1234.5678;
+		
+		// 1. ceil : 소수점 첫 째자리에서 올림. double 타입으로 리턴
+		System.out.println(Math.ceil(num)); // 1235.0
+		
+		// 2. 소수점 셋째 자리까지 올림
+		System.out.println(Math.ceil(num * 1000) / 1000); // 1234.568
+		
+		// 3. round : 소수점 첫째 자리에서 반올림. long 타입으로 리턴
+		System.out.println(Math.round(num)); // 1235
+		
+		// 4. 소수점 둘째 자리까지 반올림
+		System.out.println((double)Math.round(num * 100) / 100); // 1234.57
+		
+		// 5. floor : 소수점 첫째 자리에서 버림. double 타입으로 리턴
+		System.out.println(Math.floor(num)); // 1234.0
+		
+		// 6. 소수점 첫째 자리까지 버림
+		System.out.println(Math.floor(num * 10) / 10); // 1234.5
+
+    int num1 = 123;
+		int num2 = -456;
+		
+		// 7. abs : 절대값을 리턴해주는 메소드.
+		System.out.println(Math.abs(num1)); // 123
+		System.out.println(Math.abs(num2)); // 456
+		
+		// 8. max : 두 개의 매개변수 중 큰 값을 리턴
+		// 	  min : 두 개의 매개변수 중 작은 값을 리턴
+		//    두 개의 매개변수가 동일한 타입의 값으로 전달돼야한다.
+		System.out.println(Math.max(num1, num2)); // 123
+		System.out.println(Math.min(num1, Math.abs(num2))); 123
+		
+		// 9. rint : 매개변수로 주어진 실수에서 가장 가까운 정수 값을 double 타입으로 리턴(근사치)
+		System.out.println(Math.rint(123.456)); // 123.0
+		System.out.println(Math.rint(1.5)); // 2.0
+		System.out.println(Math.rint(2.5)); // 2.0
