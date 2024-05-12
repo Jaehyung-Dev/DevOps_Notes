@@ -105,7 +105,7 @@ for(Car c : carList) {
 // LinkedList에는 Node라는 내부클래스가 선언되어 있고 
 // Node 클래스 안에는 데이터 값과 이전, 다음 요소를 저장할 수 있는 변수가 존재한다.
 
-// ArrayList와 LinkedList 속도 비교
+// ArrayList와 LinkedList 속도 비교 
 List<String> arrayList = new ArrayList<>();
 List<String> linkedList = new LinkedList<>();
 		
@@ -135,7 +135,7 @@ System.out.println("LinkedList 순차적으로 데이터를 넣는데 걸린 시
 	(endTime - startTime) + "나노초입니다.");
 System.out.println("-------------------------------------------");
 		
-// 1-2. 리스트 중간에 데이터를 넣는 속도 비교
+// 1-2. 리스트 중간에 데이터를 넣는 속도 비교 // LinkedList가 더 빠름
 startTime = System.nanoTime();
 		
 for(int i = 1000; i < 10000; i++) {
@@ -159,7 +159,7 @@ System.out.println("LinkedList 중간에 데이터를 추가하는 데 걸린 �
 	(endTime - startTime) + "나노초입니다.");
 System.out.println("-------------------------------------------");
 		
-// 1-3. 인덱스를 통해 데이터에 접근하는 속도 비교
+// 1-3. 인덱스를 통해 데이터에 접근하는 속도 비교 // ArrayList는 바로 인덱스번째로 접근 가능하여 더 빠름
 startTime = System.nanoTime();
 		
 System.out.println(arrayList.get(80000));
@@ -213,6 +213,7 @@ while(iterator.hasNext()) {
 // 5. 특정 값 제거
 strSet.remove("Java");
 strSet.remove("C");
+strSet.remove(10); // String으로 만들었기 때문에 에러 발
 		
 System.out.println(strSet); // [HTML/CSS, JavaScript, JDBC]
 System.out.println(strSet.size()); // 3
@@ -235,20 +236,20 @@ List<Car> carList = new ArrayList<>();
 		System.out.println("carList의 데이터 개수: " + carList.size()); // 5
 		
 		// 1. Iterator 객체 얻기
-//		Iterator<Car> carIterator = carList.iterator();
-//		
-//		while(carIterator.hasNext()) {
-//			Car car = carIterator.next();
-//			
-//			car.carInfo();
-//			
-//			// iterator를 통한 데이터 삭제
-//			// iterator.next 메소드로 데이터를 하나 꺼내온 후에 사용가능하다.
-//			if(car.company.equals("현대")) {
-//				// iterator.next 메소드를 통해 꺼내온 데이터 List에서 삭제
-//				carIterator.remove();
-//			}
-//		}
+		Iterator<Car> carIterator = carList.iterator();
+		
+		while(carIterator.hasNext()) {
+			Car car = carIterator.next(); // carIterator에서 하나씩 꺼내서 car에 넣어줌
+			
+			car.carInfo();
+			
+			// iterator를 통한 데이터 삭제
+			// iterator.next 메소드로 데이터를 하나 꺼내온 후에 사용가능하다.
+			if(car.company.equals("현대")) {
+				// iterator.next 메소드를 통해 꺼내온 데이터 List에서 삭제
+				carIterator.remove();
+			}
+		}
 		
 		for(int i = 0; i < carList.size(); i++) {
 			if(carList.get(i).company.equals("현대")) {
