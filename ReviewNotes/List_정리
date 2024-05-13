@@ -1,0 +1,15 @@
+// List는 인터페이스로 객체를 생성할 수 없고
+// ArrayList와 LinkedLIst 등이 있다.
+// List를 생성할 때는 제네릭 타입의 엘레먼트 타입을 지정해야하는데
+// 지정하지 않는다면 자동으로 Object가 붙는다.
+// 엘레먼트의 타입이 Object로 생성된 List는 모든 타입의 값 저장 가능
+List list1 = new ArrayList();
+List<Object> list2 = new ArrayList<>();
+
+// 리스트변수명.add(저장할 값)로 리스트에 값 저장가능
+list1.add(1):
+
+// 제네릭 타입에는 기본타입을 지정할 수 없다.
+List<int> intList = new ArrayList<>(); // int 기본타입으로 에러 발생
+
+//subList 
