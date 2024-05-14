@@ -38,3 +38,22 @@ while(iterator.hasNext()) { // hasNext 메소드를 이용해 데이터가 남�
 ListIterator<제네릭타입> 변수명 = 리스트명.listIterator();
 ListIterator<Car> carListIterator = carList.listIterator();
 
+// ListIterator의 next : cursor가 +1로 이동(기존 0번)
+carListIterator.next();  
+// ListIterator의 add : cursor가 +1 이동 
+carListIterator.add(new Car());
+// ListIterator의 previous : cursor 이전 객체
+carListIterator.previous();
+// ListIterator의 set : 해당하는 데이터 변경
+carListIterator.set(set할 값);
+
+기아,기아
+cursor(0)
+next();
+기아,기아
+      cursor(1)
+add();
+기아,현대.기아
+        cursor(2)
+previous(); // 이전 데이터들
+set(); // 변경
