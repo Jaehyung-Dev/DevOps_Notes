@@ -17,7 +17,18 @@ carMap.put("mainCompany", "현대"); // value값이 같으나 새로운 key값�
 // Map변수명.get(key값); : key값에 해당하는 value값 가져오기
 // carMap.get("company"); // key(company) 에 해당하는 value(현대)값 리턴
 
-// key값만 모를 때
-// 
+// key값을 모를 때 - keySet() 메소드 이용
+// Set<제네릭타입> 변수명 = Map변수명.keySet();
+Set<String> keySet = carMap.keySet();
+
+Iterator<String> iterator = keySet.iterator(); // 컬렉션 요소에 접근하기 위해 iterator를 생성
+
+while(iterator.hasNext()) { //iterator.hasNext()로 컬렉션 요소를 확인
+    String key = iterator.next(); // String key에 iterator에서 가져온 컬렉션 요소를 저장
+
+    System.out,println(key); // key값 출력
+    System.out.println(carMap.get(key)); // get메소드를 이용해 key에 해당하는 value값 출력
+}
 
 // key, value를 모두 모를 때
+// 
