@@ -36,4 +36,27 @@ System.out.println(intList1.containsAll(intList2)); // intList2 가 intList1에 
 
 // 리스트에 저장된 데이터의 개수 확인
 // 리스트명.size();
-// intList1.size(); // intList1에 있는 데이터의 개수 확
+// intList1.size(); // intList1에 있는 데이터의 개수 확인
+-------------------------------------------------------------------------------------
+// 클래스리스트
+// List<클래스명> 리스트변수명 = new ArrayList<>();
+
+// List에 있는 데이터를 하나씩 꺼내기
+// for(int i = 0; i < carList.size(); i++) { // 리스트의 사이즈만큼 가져오기
+    carList.get(i).carInfo();  // List변수명.get(int index)를 사용해서 데이터 뽑기 
+}
+
+// List에서 향상된 for문 사용
+// for(Car c : carList) {
+    c.carInfo();
+}
+-------------------------------------------------------------------------------------
+// ArrayList와 LinkedList 선언
+List<제네릭 타입> 변수명 = new ArrayList<>();
+List<제네릭 타입> 변수명 = new LinkedList<>();
+// 1.데이터를 순차적으로 넣는데 걸리는 시간
+ArrayList < LinkedList // ArrayList가 더 빠르다.
+// 2.리스트 중간에 데이터를 넣는 속도
+ArrayList > LinkedList // LinkedList가 더 빠르다.
+// 3.특정 인덱스 데이터에 접근하는 속도
+ArrayList < LinkedList // ArrayList가 더 빠르다.
