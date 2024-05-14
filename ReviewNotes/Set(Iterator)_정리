@@ -1,0 +1,40 @@
+// Set 객체 생성
+// Set<제네릭타입> 변수명 = new HashSet<>();
+Set<String> strSet = new HashSet<>();
+
+// Set 데이터 추가
+// 변수명.add(추가할 객체);
+strSet.add("Java");
+strSet.add("JavaScript");
+
+// Set 중복된 데이터 추가
+System.out.println(strSet.size()); // size() 메소드를 통해 strSet 크기 확인 : 2
+strSet.add("Java");
+System.out.println(strSet.size()); // 중복된 데이터가 추가된 strSet 크기 확인 : 똑같이 2
+
+// Set의 특정 값 제거
+// set변수명.remove(제거할 객체);
+strSet.remove("Java"); // strSet{"Java", "JavaScript")에서 "Java" 제거
+
+// Set 전부 비우기
+// set변수명.clear();
+strSet.clear();
+System.out.println(strSet.size()); // clear한 strSet의 크기를 확인해보면 0이 되었다.
+
+// Set은 데이터 순서가 없기 때문에 배열과 같이 인덱스로 데이터에 접근이 불가
+// Collection의 Iterator를 이용해서 Set에 데이터에 접근해서 사용이 가능하다.
+
+// Iterator 객체 생성
+// Iterator<제네릭타입> 변수명 = set변수명.iterator(); 
+Iterator<String> iterator = strSet.iterator(); // Iterator 제네릭타입은 set의 제네릭 타입과 같아야한다.
+
+// Iterator 값 변수에 담기
+while(iterator.hasNext()) { // hasNext 메소드를 이용해 데이터가 남았는지를 검사
+    String str = iterator.next(); // str 변수에 Iterator의 값을 대입
+    System.out.println(str);
+}
+// Iterator를 set이 아닌 List에서 사용
+// ListIterator 객체 생성
+ListIterator<제네릭타입> 변수명 = 리스트명.listIterator();
+ListIterator<Car> carListIterator = carList.listIterator();
+
