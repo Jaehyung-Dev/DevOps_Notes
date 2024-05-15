@@ -1,0 +1,31 @@
+// enum 클래스 생성
+// public enum enum명 { ... }
+// public enum DefaultMonth {
+
+// 상수 변수 생성 -> 기본적으로 public static final 형태로 생성
+// 따로 값을 지정하지 않으면 0부터 1씩 증가하는 값이 자동으로 지
+JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC // 날짜 상수 변수 생성
+}
+-----------------------------------------------------------------------------------
+// Enum 사용 -> 객체와 같음
+// enum클래스명 변수명 = enum클래스명.상수변수;
+DefaultMonth defaultMonth = DefaultMonth.JUN;
+System.out.println(defaultMonth); // enum객체를 출력하면 상수의 이름이 출력 // JUN 출력
+
+// name() 메소드 : enum 객체의 지정된 상수명을 리턴
+System.out.println(defaultMonth.name()); // JUN 출력
+
+// ordinal() 메소드 : enum 객체의 지정된 상수의 위치(인덱스)를 리턴
+// System.out.println(defaultMonth.ordinal()); // JUN은 6번째 변수로 5 출력
+
+// values() 메소드 : enum 클래스에 선언된 상수들을 enum 객체 배열로 만들어서 리턴
+// static 메소드로 enum클래스원형명.values()로 호출
+DefaultMonth[] defaultMonthArr = DefaultMonth.values();
+
+for(DefaultMonth dm : defaultMonthArr) { // dm 변수를 만들어 defaultMonthArr에 있는 값들을 담아주고
+	System.out.println(dm.name() + "은(는) " + dm.ordinal() + "에 있습니다.");	// 담긴 값들의 상수명과 인덱스를 리턴
+}
+
+// valueOf(String 상수명) 메소드 : 상수명에 해당하는 enum 객체를 리턴
+DefaultMonth jun = DefaultMonth.valueOf("JUN");
+System.out.println(jun); // JUN 출력
