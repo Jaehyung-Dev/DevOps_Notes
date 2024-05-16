@@ -51,3 +51,73 @@ ValueMonth(int monthValue) {
 public int getMonthValue() {
 	return this.monthValue;
 }
+-----------------------------------------------------------------------------------------------------------------------------
+// 값이 여러개인 상수 선언 : 첫 번째 선언된 상수의 값의 타입, 개수와 일치시켜서 만들어야한다.
+JAN(1, "JANUARY"),
+FEB(2, "FEBRARY"),
+MAR(3, "MARCH");
+
+// 위에서 지정한 상수 값의 개수만큼 변수를 선언해야 한다.
+private int monthValue;
+private String monthFullName;
+
+// 생성자에서도 지정된 값의 개수만큼의 변수를 초기화한다.
+MultiValueMonth(int monthValue, String monthFullName) {
+	this.monthValue = monthValue;
+	this.monthFullName = monthFullName;
+}
+// 지정된 값의 개수만큼의 getter 메소드 선언
+public int getMonthValue() {
+	return this.monthValue;
+}
+public String getMonthFullName() {
+	return this.monthFullName;
+}
+// 값이 여러 개인 상수를 선언하면 상수 값의 개수만큼 변수를 선언해야하고 생성자에서 모두 초기화 해야하며
+// 값의 개수만큼 getter 메소드를 선언해야 한다.
+----------------------------------------------------------------------------------------------------------------------------
+// enum에 static 메소드 선언
+public enum MethodMonth {
+	public static void printMonths() {
+		MethodMonth[] methodMonthArr = MethodMonth.values();
+			
+		for(MethodMonth methodMonth : methodMonthArr) {
+			System.out.println(methodMonth + "는(은) " + methodMonth.getMonthValue() + "월 입니다.");
+		}
+	}
+	// enum에 일반(인스턴스) 메소드 선언
+	public void printMonth(int month) {
+		MethodMonth[] methodMonthArr = MethodMonth.values();
+			
+		for(MethodMonth methodMonth : methodMonthArr) {
+			if(methodMonth.getMonthValue() == month) {
+				System.out.println("입력한 달은 " + methodMonth.getMonthValue() + "월 입니다.");
+			}
+		}
+	}
+	// enum에 추상메소드 선언
+	// enum에 선언된 추상메소드는 자식클래스에서 구현되는게 아니고 선언된 상수마다 구현을 해줘야한다.
+	public abstract void printHangulMonth(); // 추상메소드를 선언하면
+	
+	JAN(1) {                                 // 이렇게 선언된 상수마다 구현해야 함
+		public void printHangulMonth() {
+			System.out.println("1월입니다.");
+		}
+	}
+	FEB(2){					 // 이렇게 선언된 상수마다 구현해야 함
+		public void printHangulMonth() {
+			System.out.println("2월입니다.");
+		}
+	};
+}
+-----------------------------------------------------------------------------------------------------------------------------
+// enum에 선언된 static 메소드 사용 : class에 선언된 static 메소드와 사용법이 동일
+// enum클래스명.static메소드명();
+MethodMonth.printMonths();
+
+// enum에 선언된 인스턴스 메소드 사용
+// enum 객체를 생성한 후 메소드를 호출한다.
+MethodMonth methodMonth = MethodMonth.JAN;
+
+// enum에 선언된 추상메소드 사용
+methodMonth.printHangulMonth();
