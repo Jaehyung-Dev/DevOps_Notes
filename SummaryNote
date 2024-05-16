@@ -141,5 +141,9 @@ public class Main {
 
 enum에서 추상메소드는 상수마다 구현해줘야한다.
 
-
-
+람다식을 매개변수로 가진 메소드에서 매개변수 람다식에는 람다식 자체가 전달된다 
+public static void mul(int a, int b, Mul mul) {
+	mul.multiply(a, b);
+} 
+mul(num1, num2, (a, b) -> {System.out.println(a * b);});
+// 여기서 num1 과 num2는 int a와 int b로 전달되고 뒤의 식 전체가 mul이라는 람다식으로 전
