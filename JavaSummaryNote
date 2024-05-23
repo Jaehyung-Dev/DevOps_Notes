@@ -147,9 +147,3 @@ public static void mul(int a, int b, Mul mul) {
 } 
 mul(num1, num2, (a, b) -> {System.out.println(a * b);}); 
 // 여기서 num1 과 num2는 int a와 int b로 전달되고 뒤의 식 전체가 mul이라는 람다식으로 전달
-
-DBMS -> Oracle 같은 소프트웨어
-
-AND, OR 절은 WHERE절이나 ON절 뒤에 붙여서 사용
-
-JAVA와 함께 사용 시 변수이름 혼동 방지를 위해 자바는 소문자 Oracle은 대문자를 사용
