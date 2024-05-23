@@ -1,15 +1,15 @@
 -- 1. 기본 Select 구문
 -- 1-1. 과목테이블에서 과목번호, 과목이름, 학점, 담당교수번호 조회
 SELECT CNO
-	 , CNAME
-	 , ST_NUM
-	 , PNO
-	FROM COURSE;
+     , CNAME
+     , ST_NUM
+     , PNO
+    FROM COURSE;
 	
 -- 1-2. 학생테이블에서 학생번호와 학생이름 조회
 SELECT SNO
-	 , SNAME
-	FROM STUDENT;
+     , SNAME
+    FROM STUDENT;
 
 -- 1-3. 조회할 테이블의 모든 컬럼의 데이터를 조회할 때는 컬럼명 대신 *를 사용해도 된다.
 SELECT *
