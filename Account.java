@@ -19,7 +19,7 @@ public class Account {
 		System.out.println("계좌주");
 		accountName = sc.nextLine();
 		System.out.println("초기 입금액");
-		initDeposit = sc.nextInt();
+		initDeposit = balance + sc.nextInt();
 		
 		if(accountNum != null && accountName != null && initDeposit > 0)
 		System.out.println("결과 : 계좌가 생성되었습니다.");

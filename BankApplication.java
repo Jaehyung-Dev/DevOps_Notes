@@ -10,7 +10,7 @@ public class BankApplication {
 		
 		Scanner sc = new Scanner(System.in);
 		Account account = new Account();
-		List<Account> ac = new ArrayList[100];
+		Account[] accountArr = new Account[100]; 
 		while(true) {
 			System.out.println("--------------------------------------");
 			System.out.println("1.계좌생성|2.계좌목록|3.예금|4.출금|5.종료");
