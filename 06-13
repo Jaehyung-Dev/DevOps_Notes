@@ -1,0 +1,26 @@
+자식선택자는 바로 하위 태그만
+자손선택자는 하위태그의 하위태그들 까지
+css 콜론(:)은 css2에서는 1개 css3에서는 2개를 사용해서 
+두 가지 모두 같은 결과가 나타난다 -> 1,2개 아무거나 써
+-애니메이션-
+이동은 transform: translate
+크기조정은 transform: scale - x축 y축 순서
+회전은 transform: rotate - %deg
+왜곡은 transform: skew - %deg\\
+
+3d 효과는 transform: translate3d -> canvas를 이용해야 제대로 3d 느낌을 뽑을수 있다
+perspective는 원근감을 주는 속성
+
+transition property : 변하게 할 속성 값 부여
+transition-duration : 애니메이션이 진행 될 시간 부여 앞에서 부터 차례대로 속성에 붙는다
+
+-애니메이션 진행속도 조정-
+transition-timing-function: ease -> 점점 빨라지다 마지막에 천천히(기본값)
+transition-timing-function: linear; -> 일정한 속도로 진행
+transition-timing-function: ease-in; -> 처음에만 느리게
+transition-timing-function: ease-out; -> 마지막에만 느리게
+transition-timing-function: ease-in-out; -> 처음과 마지막을 느리게
+
+transition-property에 transform 속성도 들어갈 수 있다.
+
+세로 단위는 스크롤이 있기 때문에 대부분 가로 단위만 지정 
