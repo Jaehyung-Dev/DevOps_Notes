@@ -9,3 +9,36 @@ dto : 값을 받아와 저장할 객체
 dao : 쿼리문과 JDBC 코드 작성
 implement : 메소드 선언 및 dao 객체 생성
 Run : 메소드에 매개변수 담아서 실행하는 부분
+
+9번 파일 : 	dao : 데이터베이스에 직접 접근해서 쿼리를 실행하는 클래스
+		dto : 데이터를 전송하는 객체
+		memberservice.java - 비즈니스 로직을 처리 
+		memberserviceImpl - memberservice를 상속받아서 만드는 Impl 객체
+		membersericeImpl
+		동작 순서 이해 service - serviceImpl(serviceImpl메소드) - dao메소드 데이터를 		전달해서 쿼리까지 실행(dao에 있는 쿼리가 실행될수있게 데이터를 계속 전달하		는 과정)
+11번 파일 : root-context.xml AOP설정 학습
+12번 파일 : root-context.xml AOP설정에서 시점 학습 
+13번 파일 : AfterReturnin.java - Joinpoint 설정, root-context.xml afterreturning
+		AfterThrowing.java -Joinpoint 설정 학습
+14번 파일 : JDBC로 만든 비즈니스 컴포넌트를 JDBC Template 형태로 변환
+		db.properties 파일,  root-context.xml에 properties 파일 참조하는 부분
+		Mapper.java 파일 확인
+15번 파일 : root-context.xml에서 Transaction 설정 
+		aop:advisor 사용하는 이유
+16번 파일 : mappings 폴더의 mapper.xml 설정 
+		sql-map-config.xml 설정
+		root-context.xml mybatis설정
+		Dao.java 파일에서 필드변수, 생성자 부분 확인 - mybatis
+		Dao.java 메소드 내부 확인 - mybatis 사용 방법
+17번 파일 : web.xml context-param value 확인
+		WEB-INF 폴더 index, header, footer.jsp 파일들
+		static 폴더 내부 구성 -> 강사님이 경로를 static 
+		views 폴더 
+		어떤 설정들을 어디에 넣었는지 확인 
+		WEB-INF 폴더는 무조건 servlet을 통해서만 접근 가능 
+		href 에도 servlet을 통한 주소 매핑
+		controller 폴더 확인 - 연결은 context:component-scan에서 매핑
+18번 파일 : NAME_TEL 테이블 create 
+		쿼리스트링 : ?key1=value1&key2=value2 ...
+		NameTelController 설정들
+		
