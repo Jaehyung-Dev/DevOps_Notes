@@ -41,4 +41,8 @@ Run : 메소드에 매개변수 담아서 실행하는 부분
 18번 파일 : NAME_TEL 테이블 create 
 		쿼리스트링 : ?key1=value1&key2=value2 ...
 		NameTelController 설정들
-		
+
+19번 파일 : 
+id: 이 쿼리의 고유 식별자입니다. Java 코드에서 이 쿼리를 호출할 때 사용됩니다
+parameterType: 이 쿼리에 전달되는 매개변수의 타입을 지정합니다
+resultType: 쿼리 실행 후 반환되는 결과의 타입을 지정합니다
