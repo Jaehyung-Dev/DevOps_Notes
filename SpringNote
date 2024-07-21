@@ -1,21 +1,3 @@
-service는 비지니스 로직을 처리해주는 객체
-
-멤버서비스런 : 데이터를 담은 dto를 매개변수로 전달
--> 멤버서비스임플의 join 메소드로 전달 된 후 -> 멤버Dao의 join 메소드로 다시 전달
--> 쿼리문에 해당되는 부분에 값들이 전달되어 JDBC 연결
-
-dto, dao, implement, run
-dto : 값을 받아와 저장할 객체
-dao : 쿼리문과 JDBC 코드 작성
-implement : 메소드 선언 및 dao 객체 생성
-Run : 메소드에 매개변수 담아서 실행하는 부분
-
-9번 파일 : 	dao : 데이터베이스에 직접 접근해서 쿼리를 실행하는 클래스
-		dto : 데이터를 전송하는 객체
-		memberservice.java - 비즈니스 로직을 처리 
-		memberserviceImpl - memberservice를 상속받아서 만드는 Impl 객체
-		membersericeImpl
-		동작 순서 이해 service - serviceImpl(serviceImpl메소드) - dao메소드 데이터를 		전달해서 쿼리까지 실행(dao에 있는 쿼리가 실행될수있게 데이터를 계속 전달하		는 과정)
 11번 파일 : root-context.xml AOP설정 학습
 12번 파일 : root-context.xml AOP설정에서 시점 학습 
 13번 파일 : AfterReturnin.java - Joinpoint 설정, root-context.xml afterreturning
