@@ -12,3 +12,15 @@
 굳이 랜덤, 날짜 빼고 사용자아이디만 uploadFile에 추가해주면 되지 않을까 
 
 마이페이지 페이징 처리 
+
+
+controller에서 url 매핑으로 
+@GetMapping("/weather-api")
+    public void weatherApi(HttpSession session) {
+        
+    }	
+이런식으로 매핑하고
+메인페이지에서 호출? - 처음에 한 번 실행되게 
+호출하면 자동으로 insert 문이 실행되게 하여 
+DB에 데이터가 들어가게
+처음 한 번은 호출 -> 다음부터는 DB에서 호출이기 때문에 훨씬 더 빠름
